@@ -1,4 +1,4 @@
-# CorePro
+# corepro-sdk-ruby
 
 A Ruby SDK for consuming the CorePro API
 
@@ -20,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Use this object hierarchy as a simple entry point into CorePro.  Details of the CorePro API itself are available at
+https://docs.corepro.io/api.  To see all available SDKs, visit https://docs.corepro.io/sdk.
 
 ## Contributing
 
