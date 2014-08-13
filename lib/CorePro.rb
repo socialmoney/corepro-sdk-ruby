@@ -1,5 +1,1 @@
-require "CorePro/version"
-module CorePro
-  # Handle for gem definition
-
-end
+# ### !/usr/bin/ruby -w

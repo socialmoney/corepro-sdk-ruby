@@ -1,9 +1,7 @@
-#!/usr/bin/ruby -w
+require_relative "Models/model_base"
+require_relative "Utils/requestor"
 
 module CorePro
-  class ExternalAccount
-    def initialize(arg)
-      puts "ExternalAccount.initialize #{arg}"
-    end
+  class ExternalAccount < Models::ModelBase
   end
 end
