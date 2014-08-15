@@ -1,7 +1,7 @@
-require_relative 'model_base'
+require_relative 'json_base'
 module CorePro
   module Models
-    class ProgramLimit < ModelBase
+    class ProgramLimit < JsonBase
       attr_accessor :minimumAmount
       attr_accessor :maximumAmount
       def to_s

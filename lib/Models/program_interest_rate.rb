@@ -1,7 +1,7 @@
-require_relative 'model_base'
+require_relative 'json_base'
 module CorePro
   module Models
-    class ProgramInterestRate < ModelBase
+    class ProgramInterestRate < JsonBase
       attr_accessor :tier
       attr_accessor :apy
       attr_accessor :apr

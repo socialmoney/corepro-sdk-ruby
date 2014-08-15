@@ -1,7 +1,7 @@
-require_relative 'model_base'
+require_relative 'json_base'
 module CorePro
   module Models
-    class CustomerQuestion < ModelBase
+    class CustomerQuestion < JsonBase
       attr_accessor :answers
       attr_accessor :prompt
       attr_accessor :type

@@ -37,34 +37,34 @@ module CorePro
     end
 
     def self.list(customerId, connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/account/list/#{customerId}", Account, connection, loggingObject)
     end
 
     def self.get(customerId, accountId, connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/account/get/#{customerId}/#{accountId}", Account, connection, loggingObject)
     end
 
     def self.getByTag(customerId, tag, connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/account/getByTag/#{customerId}/#{tag}", Account, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       aid = CorePro::Utils::Requestor.post('/account/create', CorePro::Models::AccountIdOnly, self, connection, loggingObject)
       aid.accountId
     end
 
     def update(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/account/update', nil, self, connection, loggingObject)
       true
     end
 
     def close(closeToAccountId, transactionTag, connection = nil, loggingObject = nil)
-      ac = AccountClose.new
+      ac = CorePro::AccountClose.new
       ac.closeToAccountId = closeToAccountId
       ac.transactionTag = transactionTag
       ac.close(connection, loggingObject)

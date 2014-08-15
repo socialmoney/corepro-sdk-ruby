@@ -1,8 +1,8 @@
-require_relative 'model_base'
+require_relative 'json_base'
 
 module CorePro
   module Models
-    class CustomerMessage < ModelBase
+    class CustomerMessage < JsonBase
       attr_accessor :verificationId
       attr_accessor :verificationMessage
     end

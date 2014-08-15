@@ -1,7 +1,7 @@
-require_relative 'model_base'
+require_relative 'json_base'
 module CorePro
   module Models
-    class CustomerAddress < ModelBase
+    class CustomerAddress < JsonBase
       attr_accessor :addressType
       attr_accessor :addressLine1
       attr_accessor :addressLine2

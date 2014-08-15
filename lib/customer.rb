@@ -63,7 +63,7 @@ module CorePro
     end
 
     def list(pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/customer/list?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Customer, connection, loggingObject)
     end
 
@@ -74,7 +74,7 @@ module CorePro
     end
 
     def get(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/customer/get/#{self.customerId}", Customer, connection, loggingObject)
     end
 
@@ -85,7 +85,7 @@ module CorePro
     end
 
     def getByTag(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/customer/getByTag/#{self.tag}", Customer, connection, loggingObject)
     end
 
@@ -103,28 +103,41 @@ module CorePro
     end
 
     def search(pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post("/customer/search?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Customer, self, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/customer/create', Customer, self, connection, loggingObject)
     end
 
     def update(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/customer/update', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
     end
 
+    def self.deactivate(customerId, connection = nil, loggingObject = nil)
+      c = Customer.new
+      c.customerId = customerId
+      c.deactivate(connection, loggingObject)
+    end
+
     def deactivate(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/customer/deactivate', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
     end
 
     def initiate(connection = nil, loggingObject = nil)
-      connection = connection || Connection.createFromConfig()
+      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/customer/initiate', CorePro::Models::CustomerResponse, self, connection, loggingObject)
+    end
+
+    def self.verify(verificationId, answers, connection = nil, loggingObject = nil)
+      cvr = CorePro::Models::CustomerVerifyRequest.new
+      cvr.verificationId = verificationId
+      cvr.answers = answers
+      cvr.verify connection, loggingObject
     end
 
     def verify(verificationId, answers, connection = nil, loggingObject = nil)

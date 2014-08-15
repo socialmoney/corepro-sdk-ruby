@@ -1,8 +1,8 @@
-require_relative 'model_base'
+require_relative 'json_base'
 
 module CorePro
   module Models
-    class CustomerPhone < ModelBase
+    class CustomerPhone < JsonBase
       attr_accessor :phoneType
       attr_accessor :number
       attr_accessor :isActive
