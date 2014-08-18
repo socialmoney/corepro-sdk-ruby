@@ -1,4 +1,4 @@
-require_relative 'Models/model_base'
+require_relative 'models/model_base'
 
 module CorePro
   class CustomerBeneficiary < Models::ModelBase

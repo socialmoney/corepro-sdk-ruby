@@ -1,4 +1,5 @@
 require_relative 'json_base'
+require_relative 'customer_answer'
 module CorePro
   module Models
     class CustomerQuestion < JsonBase

@@ -1,6 +1,6 @@
-require_relative 'Models/model_base'
-require_relative 'Utils/requestor'
-require_relative 'Models/file_content'
+require_relative 'models/model_base'
+require_relative 'utils/requestor'
+require_relative 'models/file_content'
 
 module CorePro
   class Statement < Models::ModelBase

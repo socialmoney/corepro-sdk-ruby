@@ -12,7 +12,7 @@ module CorePro
 
       def from_json! json, classDefs = {}
         classDefs = classDefs || {}
-        classDefs['errors'] = CorePro::Models::ApiError
+        classDefs['errors'] = ApiError
         super json, classDefs
 
         if classDefs.has_key?('data')

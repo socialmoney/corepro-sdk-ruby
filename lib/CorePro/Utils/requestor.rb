@@ -1,6 +1,6 @@
 require_relative '../version'
 require_relative 'logger'
-require_relative '../Models/envelope'
+require_relative '../models/envelope'
 require_relative '../core_pro_api_exception'
 
 require 'openssl'

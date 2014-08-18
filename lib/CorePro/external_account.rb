@@ -1,7 +1,7 @@
-require_relative 'Models/model_base'
-require_relative 'Utils/requestor'
-require_relative 'Models/external_account_id_only'
-require_relative 'Models/external_account_verify'
+require_relative 'models/model_base'
+require_relative 'utils/requestor'
+require_relative 'models/external_account_id_only'
+require_relative 'models/external_account_verify'
 require_relative 'connection'
 
 module CorePro
@@ -61,7 +61,7 @@ module CorePro
 
     def verify(amount1, amount2, connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      eav = ExternalAccountVerify.new
+      eav = CorePro::Models::ExternalAccountVerify.new
       eav.customerId = @customerId
       eav.externalAccountId = @externalAccountId
       eav.amount1 = @amount1

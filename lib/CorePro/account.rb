@@ -1,6 +1,6 @@
-require_relative 'Models/model_base'
-require_relative 'Utils/requestor'
-require_relative 'Models/account_id_only'
+require_relative 'models/model_base'
+require_relative 'utils/requestor'
+require_relative 'models/account_id_only'
 require_relative 'connection'
 
 module CorePro

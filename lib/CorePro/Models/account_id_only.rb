@@ -1,3 +1,4 @@
+# test
 require_relative 'model_base'
 module CorePro
   module Models

@@ -1,5 +1,5 @@
 require_relative 'model_base'
-require_relative '../Utils/requestor'
+require_relative '../utils/requestor'
 require_relative 'customer_response'
 require_relative 'customer_answer'
 

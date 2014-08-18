@@ -1,5 +1,5 @@
 require_relative 'Models/model_base'
-require_relative 'Utils/requestor'
+require_relative 'utils/requestor'
 require 'base64'
 
 module CorePro
@@ -25,7 +25,7 @@ module CorePro
 
     def upload(connection = nil, loggingObject = nil)
       # NOTE: documentContent is assumed to be raw content bytes.
-      #       CorePro API expects base64 encoded string. so we convert that here.
+      #       corepro API expects base64 encoded string. so we convert that here.
       documentContent = Base64.encode64(documentContent)
 
       connection ||= Connection.createFromConfig()

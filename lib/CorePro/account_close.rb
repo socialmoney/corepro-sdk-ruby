@@ -1,5 +1,5 @@
-require_relative 'Models/model_base'
-require_relative 'Utils/requestor'
+require_relative 'models/model_base'
+require_relative 'utils/requestor'
 
 module CorePro
   class AccountClose < Models::ModelBase

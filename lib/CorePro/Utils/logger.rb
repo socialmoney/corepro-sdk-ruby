@@ -1,6 +1,6 @@
 module CorePro
   module Utils
-    module Logger
+    class Logger
       def write(body, loggingObject)
         # TODO: write to log file / registered callback class
       end
