@@ -24,10 +24,13 @@ Use this object hierarchy as a simple entry point into CorePro.  Details of the 
 https://docs.corepro.io/api.  To see all available SDKs, visit https://docs.corepro.io/sdk.
 
 ```ruby
-# create a connection (leave a nil if using config to specify connection, which is the typical use case)
+require 'CorePro'
+
+# create a connection 
+# (typical use case is to pull connection info from config.yml, this is for example only)
 conn = CorePro::Connection.new 'your-api-key-here', 'your-api-secret-here', 'api.corepro.io'
 
-# retrieve a customer by a known tag
+# retrieve a customer by a known tag (pass conn as nil if connection info is in config.yml)
 cust = CorePro::Customer.getByTag 'bweaver', conn
 
 # retrieve most recent transactions for that customer's primary account
