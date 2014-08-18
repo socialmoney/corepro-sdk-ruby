@@ -7,7 +7,7 @@ require_relative '../lib/CorePro/connection'
 class AccountTest # < CoreProTestBase
 
   def test_list
-    accounts = CorePro::Account::list(@@customerId, @@conn, NIL)
+    accounts = CorePro::Account.list(@@customerId, @@conn, NIL)
     accounts.each{ |a|
       puts a
     }
@@ -15,13 +15,13 @@ class AccountTest # < CoreProTestBase
   end
 
   def test_get
-    a = CorePro::Account::get(@@customerId, @@accountId, @@conn, NIL)
+    a = CorePro::Account.get(@@customerId, @@accountId, @@conn, NIL)
     puts a
     assert_equal '101686', a.accountNumber
   end
 
   def test_update
-    a = CorePro::Account::get(@@customerId, @@accountId, @@conn, NIL)
+    a = CorePro::Account.get(@@customerId, @@accountId, @@conn, NIL)
     a.name = "Testing ruby sdk #{Time.new.inspect}"
     begin
       assert_true a.update(@@conn, NIL)

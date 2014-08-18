@@ -7,7 +7,7 @@ A Ruby SDK for consuming the CorePro API
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'CorePro'
+gem 'corepro'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install CorePro
+    $ gem install corepro
 
 ## Usage
 
@@ -24,10 +24,10 @@ Use this object hierarchy as a simple entry point into CorePro.  Details of the 
 https://docs.corepro.io/api.  To see all available SDKs, visit https://docs.corepro.io/sdk.
 
 ```ruby
-require 'CorePro'
+require 'corepro'
 
 # create a connection 
-# (typical use case is to pull connection info from config.yml, this is for example only)
+# (typical use case is to pull connection info from config.yml, this is for explicitness)
 conn = CorePro::Connection.new 'your-api-key-here', 'your-api-secret-here', 'api.corepro.io'
 
 # retrieve a customer by a known tag (pass conn as nil if connection info is in config.yml)
