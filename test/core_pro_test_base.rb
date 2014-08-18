@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../lib/CorePro/connection"
+require_relative "../lib/corepro/connection"
 
 class CoreProTestBase < Test::Unit::TestCase
 
