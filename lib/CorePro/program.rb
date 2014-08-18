@@ -1,7 +1,7 @@
-require_relative "../CorePro/Models/model_base"
-require_relative "../CorePro/Utils/requestor"
-require_relative "../CorePro/Models/program_interest_rate"
-require_relative "../CorePro/Models/program_limit"
+require_relative 'Models/model_base'
+require_relative 'Utils/requestor'
+require_relative 'Models/program_interest_rate'
+require_relative 'Models/program_limit'
 
 module CorePro
   class Program < Models::ModelBase

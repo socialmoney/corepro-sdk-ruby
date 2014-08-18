@@ -1,5 +1,5 @@
-require_relative "model_base"
-require_relative "api_error"
+require_relative 'model_base'
+require_relative 'api_error'
 
 module CorePro
   module Models

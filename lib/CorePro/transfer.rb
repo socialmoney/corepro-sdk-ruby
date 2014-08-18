@@ -1,5 +1,5 @@
-require_relative "../CorePro/Models/model"
-require_relative "../CorePro/Utils/requestor"
+require_relative 'Models/model'
+require_relative 'Utils/requestor'
 
 module CorePro
   class Transfer < Models::ModelBase

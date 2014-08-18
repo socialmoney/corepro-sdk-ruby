@@ -1,13 +1,13 @@
-require_relative "../../CorePro/version"
-require_relative "logger"
-require_relative "../../CorePro/Models/envelope"
-require_relative "../../CorePro/core_pro_api_exception"
+require_relative '../version'
+require_relative 'logger'
+require_relative '../Models/envelope'
+require_relative '../core_pro_api_exception'
 
-require "openssl"
-require "base64"
-require "net/https"
-require "uri"
-require "json"
+require 'openssl'
+require 'base64'
+require 'net/https'
+require 'uri'
+require 'json'
 
 module CorePro
   module Utils

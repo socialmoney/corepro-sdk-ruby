@@ -1,8 +1,8 @@
-require_relative "../CorePro/Models/model_base"
-require_relative "../CorePro/Utils/requestor"
-require_relative "../CorePro/Models/external_account_id_only"
-require_relative "../CorePro/Models/external_account_verify"
-require_relative "connection"
+require_relative 'Models/model_base'
+require_relative 'Utils/requestor'
+require_relative 'Models/external_account_id_only'
+require_relative 'Models/external_account_verify'
+require_relative 'connection'
 
 module CorePro
   class ExternalAccount < Models::ModelBase

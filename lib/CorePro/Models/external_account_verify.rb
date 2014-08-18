@@ -1,4 +1,4 @@
-require_relative "model_base"
+require_relative 'model_base'
 
 module CorePro
   module Models

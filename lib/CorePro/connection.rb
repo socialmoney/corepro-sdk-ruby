@@ -1,5 +1,5 @@
-require "base64"
-require "yaml"
+require 'base64'
+require 'yaml'
 
 module CorePro
   class Connection

@@ -1,5 +1,5 @@
-require_relative "../CorePro/Models/model_base"
-require_relative "../CorePro/Utils/requestor"
+require_relative 'Models/model_base'
+require_relative 'Utils/requestor'
 
 module CorePro
   class Transaction < Models::ModelBase

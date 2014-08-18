@@ -1,6 +1,6 @@
-require_relative "../CorePro/Models/model_base"
-require_relative "../CorePro/Utils/requestor"
-require "base64"
+require_relative 'Models/model_base'
+require_relative 'Utils/requestor'
+require 'base64'
 
 module CorePro
   class ExternalAccountDocument < Models::ModelBase
