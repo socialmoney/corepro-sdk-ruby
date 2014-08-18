@@ -1,5 +1,5 @@
-require_relative "Models/mdoel_base"
-require_relative "Utils/requestor"
+require_relative "../CorePro/Models/mdoel_base"
+require_relative "../CorePro/Utils/requestor"
 require "base64"
 
 module CorePro

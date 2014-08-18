@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["devsupport"]
   spec.email         = ["devsupport@socialmoney.com"]
   spec.summary       = %q{A Ruby SDK for consuming the CorePro API.}
-  spec.description   = %q{}
+  spec.description   = %q{See http://docs.corepro.io for more detail.}
   spec.homepage      = "https://github.com/socialmoney/corepro-sdk-ruby"
   spec.license       = "MIT"
 

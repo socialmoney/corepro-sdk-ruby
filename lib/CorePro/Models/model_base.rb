@@ -1,4 +1,4 @@
-require "Models/json_base"
+require_relative "json_base"
 module CorePro
   module Models
     class ModelBase < JsonBase

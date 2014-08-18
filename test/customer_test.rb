@@ -1,7 +1,7 @@
 require_relative "../test/core_pro_test_base"
-require "customer"
-require "connection"
-require "core_pro_api_exception"
+require_relative  "../lib/CorePro/customer"
+require_relative  "../lib/CorePro/connection"
+require_relative  "../lib/CorePro/core_pro_api_exception"
 
 class CustomerTest < CoreProTestBase
 

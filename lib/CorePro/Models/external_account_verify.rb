@@ -1,7 +1,4 @@
-require_relative "Models/model_base"
-require_relative "Utils/requestor"
-require_relative "Models/external_account_id_only"
-require_relative "connection"
+require_relative "model_base"
 
 module CorePro
   module Models
