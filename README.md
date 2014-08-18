@@ -23,6 +23,18 @@ Or install it yourself as:
 Use this object hierarchy as a simple entry point into CorePro.  Details of the CorePro API itself are available at
 https://docs.corepro.io/api.  To see all available SDKs, visit https://docs.corepro.io/sdk.
 
+```ruby
+# create a connection (leave a nil if using config to specify connection, which is the typical use case)
+conn = CorePro::Connection.new 'your-api-key-here', 'your-api-secret-here', 'api.corepro.io'
+
+# retrieve a customer by a known tag
+cust = CorePro::Customer.getByTag 'bweaver', conn
+
+# retrieve most recent transactions for that customer's primary account
+trans = CorePro::Transaction.list cust.customerId, cust.accounts[0].accountId
+
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/socialmoney/corepro-sdk-ruby/fork ) 
