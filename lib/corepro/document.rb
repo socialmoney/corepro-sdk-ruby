@@ -16,7 +16,7 @@ module CorePro
 
     def self.list(cultureName, documentType = nil, connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.get("/document/list/#{cultureName}/#{documentType}", Document, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/document/list/#{escape(cultureName)}/#{escape(documentType)}", Document, connection, loggingObject)
     end
 
   end

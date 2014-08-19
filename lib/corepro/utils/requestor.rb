@@ -15,9 +15,21 @@ module CorePro
 
       SDK_USER_AGENT = "CorePro Ruby SDK v #{CorePro::VERSION}"
 
+      @@config = begin
+        YAML.load(File.open('config.yml'))
+      rescue ArgumentError => e
+        puts "Could not parse YAML: #{e.message}"
+      end
+
+
       def self.get(relativeUrl, classDef, connection, loggingObject)
-        url = "https://#{connection.domainName}/#{relativeUrl}"
-        http = Net::HTTP.new(connection.domainName, 443)
+        uri = URI.parse("https://#{connection.domainName}#{relativeUrl}")
+        if @@config['CoreProProxyServer'] != nil && @@config['CoreProProxyPort'] != nil
+          proxy = Net::HTTP::Proxy(@@config['CoreProProxyServer'], @@config['CoreProProxyPort'])
+          http = proxy.new(uri.host, uri.port)
+        else
+          http = Net::HTTP.new(uri.host, uri.port)
+        end
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         headers = { 'User-Agent' => SDK_USER_AGENT,
@@ -25,7 +37,7 @@ module CorePro
                   'Accept' => 'application/json; charset=utf-8',
                   'Authorization' => connection.headerValue,
                   'Host' => connection.domainName}
-        request = Net::HTTP::Get.new(url, headers)
+        request = Net::HTTP::Get.new(uri.request_uri, headers)
 
         response = http.request(request)
 
@@ -35,8 +47,13 @@ module CorePro
       end
 
       def self.post(relativeUrl, classDef, toPost, connection, loggingObject)
-        uri = URI.parse("https://#{connection.domainName}/#{relativeUrl}")
-        http = Net::HTTP.new(uri.host, uri.port)
+        uri = URI.parse("https://#{connection.domainName}#{relativeUrl}")
+        if @@config['CoreProProxyServer'] != nil && @@config['CoreProProxyPort'] != nil
+          proxy = Net::HTTP::Proxy(@@config['CoreProProxyServer'], @@config['CoreProProxyPort'])
+          http = proxy.new(uri.host, uri.port)
+        else
+          http = Net::HTTP.new(uri.host, uri.port)
+        end
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         headers = { 'User-Agent' => SDK_USER_AGENT,

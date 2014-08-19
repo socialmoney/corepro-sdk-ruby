@@ -48,7 +48,7 @@ module CorePro
 
     def self.getByTag(customerId, tag, connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.get("/account/getByTag/#{customerId}/#{tag}", Account, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/account/getByTag/#{customerId}/#{escape(tag)}", Account, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
@@ -59,8 +59,8 @@ module CorePro
 
     def update(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.post('/account/update', nil, self, connection, loggingObject)
-      true
+      aid = CorePro::Utils::Requestor.post('/account/update', CorePro::Models::AccountIdOnly, self, connection, loggingObject)
+      aid.accountId
     end
 
     def close(closeToAccountId, transactionTag, connection = nil, loggingObject = nil)

@@ -32,7 +32,7 @@ module CorePro
         start = '1900-01-01'
       end
 
-      CorePro::Utils::Requestor.get("/transaction/list/#{customerId}/#{accountId}/#{status}/#{start}/#{finish}?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Transaction, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/transaction/list/#{customerId}/#{accountId}/#{escape(status)}/#{start}/#{finish}?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Transaction, connection, loggingObject)
     end
 
 

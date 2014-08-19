@@ -1,3 +1,5 @@
 CoreProApiKey: your-api-key-here
 CoreProApiSecret: your-secret-here
 CoreProDomainName: sandbox-api.corepro.io
+CoreProProxyServer: leave-empty-if-no-proxy
+CoreProProxyPort: leave-empty-if-no-proxy

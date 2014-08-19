@@ -27,18 +27,38 @@ module CorePro
     attr_accessor :lockedReason
 
     def self.list(customerId, connection = nil, loggingObject = nil)
+      ea = ExternalAccount.new
+      ea.customerId = customerId
+      ea.list connection, loggingObject
+    end
+
+    def list(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/externalaccount/list/#{customerId}", ExternalAccount, connection, loggingObject)
     end
 
     def self.get(customerId, externalAccountId, connection = nil, loggingObject = nil)
+      ea = ExternalAccount.new
+      ea.customerId = customerId
+      ea.externalAccountId = externalAccountId
+      ea.get connection, loggingObject
+    end
+
+    def get(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/externalaccount/get/#{customerId}/#{externalAccountId}", ExternalAccount, connection, loggingObject)
     end
 
     def self.getByTag(customerId, tag, connection = nil, loggingObject = nil)
+      ea = ExternalAccount.new
+      ea.customerId = customerId
+      ea.tag = tag
+      ea.getByTag connection, loggingObject
+    end
+
+    def getByTag(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.get("/externalaccount/getByTag/#{customerId}/#{tag}", ExternalAccount, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/externalaccount/getByTag/#{customerId}/#{escape(tag)}", ExternalAccount, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
@@ -72,14 +92,14 @@ module CorePro
 
     def update(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.post('/externalaccount/update', nil, self, connection, loggingObject)
-      true
+      eaid = CorePro::Utils::Requestor.post('/externalaccount/update', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
+      eaid.externalAccountId
     end
 
     def deactivate(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.post('/externalaccount/deactivate', nil, self, connection, loggingObject)
-      true
+      eaid = CorePro::Utils::Requestor.post('/externalaccount/deactivate', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
+      eaid.externalAccountId
     end
 
   end

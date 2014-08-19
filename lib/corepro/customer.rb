@@ -86,7 +86,7 @@ module CorePro
 
     def getByTag(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.get("/customer/getByTag/#{self.tag}", Customer, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/customer/getByTag/#{escape(self.tag)}", Customer, connection, loggingObject)
     end
 
     def self.search(tag = nil, taxId = nil, passportNumber = nil, driversLicenseNumber = nil, birthDate = nil, emailAddress = nil, lastName = nil, firstName = nil, pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
@@ -109,12 +109,14 @@ module CorePro
 
     def create(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.post('/customer/create', Customer, self, connection, loggingObject)
+      cid = CorePro::Utils::Requestor.post('/customer/create', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
+      cid.customerId
     end
 
     def update(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.post('/customer/update', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
+      cid = CorePro::Utils::Requestor.post('/customer/update', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
+      cid.customerId
     end
 
     def self.deactivate(customerId, connection = nil, loggingObject = nil)
@@ -125,7 +127,8 @@ module CorePro
 
     def deactivate(connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
-      CorePro::Utils::Requestor.post('/customer/deactivate', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
+      cid = CorePro::Utils::Requestor.post('/customer/deactivate', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
+      cid.customerId
     end
 
     def initiate(connection = nil, loggingObject = nil)
