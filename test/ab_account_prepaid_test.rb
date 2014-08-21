@@ -39,4 +39,8 @@ class AbAccountPrepaidTest < CoreProTestBase
     accountId = a.update @@prepaidConn, nil
     assert accountId == @@prepaidAccountId
   end
+
+  def test_zzz_close
+
+  end
 end

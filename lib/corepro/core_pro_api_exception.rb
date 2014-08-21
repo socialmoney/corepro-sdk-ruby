@@ -15,7 +15,12 @@ module CorePro
     end
 
     def to_s
-      "#{@errors[0]}. See errors collection for more information."
+      msg = ''
+      @errors.each do |e|
+        msg += e.to_s + ' '
+      end
+      msg
+
     end
   end
 end

@@ -21,6 +21,12 @@ module CorePro
     attr_accessor :isCredit
 
     def self.list(customerId, accountId, status = nil, beginDate = nil, endDate = nil, pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
+      t = Transaction.new
+      t.customerId = customerId
+      t.list accountId, status, beginDate, endDate, pageNumber, pageSize, connection, loggingObject
+    end
+
+    def list(accountId = nil, status = nil, beginDate = nil, endDate =nil, pageNumber =0, pageSize = 200, connection = nil, loggingObject = nil)
       connection ||= Connection.createFromConfig()
       start = beginDate.kind_of?(Date) ? beginDate.strftime('%Y-%m-%d') : (beginDate.kind_of?(String) ? beginDate[0..9] : nil)
       finish = endDate.kind_of?(Date) ? endDate.strftime('%Y-%m-%d') : (endDate.kind_of?(String) ? endDate[0..9] : nil)
@@ -32,7 +38,7 @@ module CorePro
         start = '1900-01-01'
       end
 
-      CorePro::Utils::Requestor.get("/transaction/list/#{customerId}/#{accountId}/#{escape(status)}/#{start}/#{finish}?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Transaction, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/transaction/list/#{self.customerId}/#{accountId}/#{escape(status)}/#{start}/#{finish}?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Transaction, connection, loggingObject)
     end
 
 

@@ -7,7 +7,11 @@ module CorePro
       attr_accessor :requestId
 
       def escape(val)
-        URI::escape(val)
+        if val.to_s.empty?
+          ''
+        else
+          URI::escape(val)
+        end
       end
 
       def to_s

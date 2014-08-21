@@ -5,7 +5,11 @@ module CorePro
   class Connection
 
     @@config = begin
-      YAML.load(File.open('config.yml'))
+      if File.exists?('config.yml')
+        YAML.load(File.open('config.yml'))
+      else
+        {}
+      end
     rescue ArgumentError => e
       puts "Could not parse YAML: #{e.message}"
     end
@@ -57,11 +61,15 @@ module CorePro
     end
 
     def domainName=(value)
-      value.gsub! 'https://', ''
-      value.gsub! 'http://', ''
-      value.gsub! 'www.', ''
+      if value == nil
+        @domainName = nil
+      else
+        value.gsub! 'https://', ''
+        value.gsub! 'http://', ''
+        value.gsub! 'www.', ''
 
-      @domainName = value.split('/')[0]
+        @domainName = value.split('/')[0]
+      end
     end
 
   end

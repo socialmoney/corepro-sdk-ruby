@@ -16,13 +16,20 @@ module CorePro
       SDK_USER_AGENT = "CorePro Ruby SDK v #{CorePro::VERSION}"
 
       @@config = begin
-        YAML.load(File.open('config.yml'))
+        if File.exists?('config.yml')
+          YAML.load(File.open('config.yml'))
+        else
+          {}
+        end
       rescue ArgumentError => e
         puts "Could not parse YAML: #{e.message}"
       end
 
 
       def self.get(relativeUrl, classDef, connection, loggingObject)
+        if connection.headerValue.to_s.empty? || connection.domainName.to_s.empty?
+          raise ArgumentError, 'A valid connection with apiKey, apiSecret, and domainName must be specified.'
+        end
         uri = URI.parse("https://#{connection.domainName}#{relativeUrl}")
         if @@config['CoreProProxyServer'] != nil && @@config['CoreProProxyPort'] != nil
           proxy = Net::HTTP::Proxy(@@config['CoreProProxyServer'], @@config['CoreProProxyPort'])
@@ -47,6 +54,10 @@ module CorePro
       end
 
       def self.post(relativeUrl, classDef, toPost, connection, loggingObject)
+        if connection.headerValue.to_s.empty? || connection.domainName.to_s.empty?
+          raise ArgumentError, 'A valid connection with apiKey, apiSecret, and domainName must be specified.'
+        end
+
         uri = URI.parse("https://#{connection.domainName}#{relativeUrl}")
         if @@config['CoreProProxyServer'] != nil && @@config['CoreProProxyPort'] != nil
           proxy = Net::HTTP::Proxy(@@config['CoreProProxyServer'], @@config['CoreProProxyPort'])

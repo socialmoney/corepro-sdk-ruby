@@ -1,4 +1,4 @@
-require_relative 'models/model'
+require_relative 'models/model_base'
 require_relative 'utils/requestor'
 
 module CorePro
