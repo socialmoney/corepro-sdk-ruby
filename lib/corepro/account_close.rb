@@ -15,7 +15,6 @@ module CorePro
     attr_accessor :isClosedToExternalAccount
 
     def close(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/account/close', AccountClose, self, connection, loggingObject)
     end
   end

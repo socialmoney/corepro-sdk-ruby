@@ -2,6 +2,7 @@ require_relative '../version'
 require_relative 'logger'
 require_relative '../models/envelope'
 require_relative '../core_pro_api_exception'
+require_relative '../connection'
 
 require 'openssl'
 require 'base64'
@@ -27,6 +28,7 @@ module CorePro
 
 
       def self.get(relativeUrl, classDef, connection, loggingObject)
+        connection ||= Connection.createFromConfig()
         if connection.headerValue.to_s.empty? || connection.domainName.to_s.empty?
           raise ArgumentError, 'A valid connection with apiKey, apiSecret, and domainName must be specified.'
         end
@@ -54,6 +56,7 @@ module CorePro
       end
 
       def self.post(relativeUrl, classDef, toPost, connection, loggingObject)
+        connection ||= Connection.createFromConfig()
         if connection.headerValue.to_s.empty? || connection.domainName.to_s.empty?
           raise ArgumentError, 'A valid connection with apiKey, apiSecret, and domainName must be specified.'
         end

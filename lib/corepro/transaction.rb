@@ -27,7 +27,6 @@ module CorePro
     end
 
     def list(accountId = nil, status = nil, beginDate = nil, endDate =nil, pageNumber =0, pageSize = 200, connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       start = beginDate.kind_of?(Date) ? beginDate.strftime('%Y-%m-%d') : (beginDate.kind_of?(String) ? beginDate[0..9] : nil)
       finish = endDate.kind_of?(Date) ? endDate.strftime('%Y-%m-%d') : (endDate.kind_of?(String) ? endDate[0..9] : nil)
 

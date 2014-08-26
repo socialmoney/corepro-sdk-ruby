@@ -20,8 +20,7 @@ module CorePro
         @answers = []
       end
 
-      def verify(connection = NIL, loggingObject = NIL)
-        connection = connection || Connection.createFromConfig()
+      def verify(connection = nil, loggingObject = nil)
         CorePro::Utils::Requestor.post('/customer/verify', CustomerResponse, self, connection, loggingObject)
       end
     end

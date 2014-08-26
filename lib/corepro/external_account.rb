@@ -2,7 +2,6 @@ require_relative 'models/model_base'
 require_relative 'utils/requestor'
 require_relative 'models/external_account_id_only'
 require_relative 'models/external_account_verify'
-require_relative 'connection'
 
 module CorePro
   class ExternalAccount < Models::ModelBase
@@ -33,7 +32,6 @@ module CorePro
     end
 
     def list(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/externalaccount/list/#{customerId}", ExternalAccount, connection, loggingObject)
     end
 
@@ -45,7 +43,6 @@ module CorePro
     end
 
     def get(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/externalaccount/get/#{customerId}/#{externalAccountId}", ExternalAccount, connection, loggingObject)
     end
 
@@ -57,18 +54,15 @@ module CorePro
     end
 
     def getByTag(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/externalaccount/getByTag/#{customerId}/#{escape(tag)}", ExternalAccount, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       eaid = CorePro::Utils::Requestor.post('/externalaccount/create', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
       eaid.externalAccountId
     end
 
     def initiate(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/externalaccount/initiate', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
     end
 
@@ -80,7 +74,6 @@ module CorePro
     end
 
     def verify(amount1, amount2, connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       eav = CorePro::Models::ExternalAccountVerify.new
       eav.customerId = @customerId
       eav.externalAccountId = @externalAccountId
@@ -91,13 +84,11 @@ module CorePro
     end
 
     def update(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       eaid = CorePro::Utils::Requestor.post('/externalaccount/update', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
       eaid.externalAccountId
     end
 
     def deactivate(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       eaid = CorePro::Utils::Requestor.post('/externalaccount/deactivate', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
       eaid.externalAccountId
     end

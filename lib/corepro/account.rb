@@ -1,7 +1,6 @@
 require_relative 'models/model_base'
 require_relative 'utils/requestor'
 require_relative 'models/account_id_only'
-require_relative 'connection'
 
 module CorePro
   class Account < Models::ModelBase
@@ -37,28 +36,23 @@ module CorePro
     end
 
     def self.list(customerId, connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/account/list/#{customerId}", Account, connection, loggingObject)
     end
 
     def self.get(customerId, accountId, connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/account/get/#{customerId}/#{accountId}", Account, connection, loggingObject)
     end
 
     def self.getByTag(customerId, tag, connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/account/getByTag/#{customerId}/#{escape(tag)}", Account, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       aid = CorePro::Utils::Requestor.post('/account/create', CorePro::Models::AccountIdOnly, self, connection, loggingObject)
       aid.accountId
     end
 
     def update(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       aid = CorePro::Utils::Requestor.post('/account/update', CorePro::Models::AccountIdOnly, self, connection, loggingObject)
       aid.accountId
     end

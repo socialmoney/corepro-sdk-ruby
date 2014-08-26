@@ -50,7 +50,6 @@ module CorePro
     end
 
     def self.get(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/program/get", Program, connection, loggingObject)
     end
 

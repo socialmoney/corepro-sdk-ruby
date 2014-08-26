@@ -22,7 +22,6 @@ module CorePro
     end
 
     def create(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/transfer/create', Transfer, self, connection, loggingObject)
     end
 
@@ -35,7 +34,6 @@ module CorePro
     end
 
     def void(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/transfer/void', Transfer, self, connection, loggingObject)
     end
   end

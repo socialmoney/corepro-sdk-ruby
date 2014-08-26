@@ -20,7 +20,6 @@ module CorePro
     end
 
     def list(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/customerbeneficiary/list/#{self.customerId}", CustomerBeneficiary, connection, loggingObject)
     end
 
@@ -32,24 +31,20 @@ module CorePro
     end
 
     def get(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.get("/customerbeneficiary/get/#{self.customerId}/#{self.customerBeneficiaryId}", CustomerBeneficiary, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       cbid = CorePro::Utils::Requestor.post('/customerbeneficiary/create', CorePro::Models::CustomerBeneficiaryIdOnly, self, connection, loggingObject)
       cbid.customerBeneficiaryId
     end
 
     def update(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       cbid = CorePro::Utils::Requestor.post('/customerbeneficiary/update', CorePro::Models::CustomerBeneficiaryIdOnly, self, connection, loggingObject)
       cbid.customerBeneficiaryId
     end
 
     def deactivate(connection = nil, loggingObject = nil)
-      connection ||= Connection.createFromConfig()
       cbid = CorePro::Utils::Requestor.post('/customerbeneficiary/deactivate', CorePro::Models::CustomerBeneficiaryIdOnly, self, connection, loggingObject)
       cbid.customerBeneficiaryId
     end

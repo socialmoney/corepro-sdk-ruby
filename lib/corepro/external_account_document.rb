@@ -27,8 +27,6 @@ module CorePro
       # NOTE: documentContent is assumed to be raw content bytes.
       #       corepro API expects base64 encoded string. so we convert that here.
       self.documentContent = Base64.encode64(self.documentContent)
-
-      connection ||= Connection.createFromConfig()
       CorePro::Utils::Requestor.post('/externalaccountdocument/upload', nil, self, connection, loggingObject)
     end
 
