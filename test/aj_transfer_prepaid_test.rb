@@ -9,6 +9,7 @@ class AjTransferPrepaidTest < CoreProTestBase
     t.fromId = @@prepaidExternalAccountId
     t.toId = @@prepaidAccountId
     t.amount = 1.25
+    t.tag = "ruby #{@@timestamp}"
     results = t.create @@prepaidConn, nil
     @@prepaidExternalToInternalTransactionId = results[0].transactionId
     assert @@prepaidExternalToInternalTransactionId > 0
@@ -20,6 +21,7 @@ class AjTransferPrepaidTest < CoreProTestBase
     t.fromId = @@prepaidAccountId
     t.toId = @@prepaidExternalAccountId
     t.amount = 1.20
+    t.tag = "ruby 2 #{@@timestamp}"
     results = t.create @@prepaidConn, nil
     @@prepaidInternalToExternalTransactionId = results[0].transactionId
     assert @@prepaidInternalToExternalTransactionId > 0

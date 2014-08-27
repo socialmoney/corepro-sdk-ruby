@@ -7,7 +7,7 @@ class AdCustomerBeneficiaryTest < CoreProTestBase
     cb = CorePro::CustomerBeneficiary.new
     cb.customerId = @@prepaidCustomerId
     cb.firstName = 'Freddie'
-    cb.lastName = "Mercury #{@@timestamp}"
+    cb.lastName = "Mercury Ruby #{@@timestamp}"
     cb.birthDate = '1969-05-05T00:00:00.000+00:00'
     cb.taxId = '123412349'
     @@prepaidCustomerBeneficiaryId = cb.create @@prepaidConn, nil

@@ -11,7 +11,7 @@ class AbAccountPrepaidTest < CoreProTestBase
     a.category = 'CategoryA'
     a.subCategory = 'CategoryB'
     a.isCloseable = true
-    a.name = "Account #{@@timestamp}"
+    a.name = "Account Ruby #{@@timestamp}"
     a.targetAmount = 500
     a.targetDate = '01/01/2030'
     @@prepaidAccountId = a.create @@prepaidConn, nil
@@ -35,7 +35,7 @@ class AbAccountPrepaidTest < CoreProTestBase
     a = CorePro::Account.new
     a.accountId = @@prepaidAccountId
     a.customerId = @@prepaidCustomerId
-    a.name = "Updated account #{@@timestamp}"
+    a.name = "Updated Account Ruby #{@@timestamp}"
     accountId = a.update @@prepaidConn, nil
     assert accountId == @@prepaidAccountId
   end

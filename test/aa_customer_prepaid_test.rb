@@ -10,7 +10,7 @@ class AaCustomerPrepaidTest < CoreProTestBase
     c.culture = 'en-US'
     c.firstName = 'Joey'
     c.middleName = 'Flanagan'
-    c.lastName = "McTester#{@@timestamp}"
+    c.lastName = "McTester Ruby #{@@timestamp}"
     c.gender = 'M'
     c.isDocumentsAccepted = true
     c.isSubjectToBackupWithholding = false
@@ -39,7 +39,7 @@ class AaCustomerPrepaidTest < CoreProTestBase
 
   def test_search
     c = CorePro::Customer.new
-    c.lastName = "McTester#{@@timestamp}"
+    c.lastName = "McTester Ruby #{@@timestamp}"
     cs = c.search nil, nil, @@prepaidConn, nil
     assert cs != nil && cs.length > 0, "Could not search 'McTester#{@@timestamp}'"
   end

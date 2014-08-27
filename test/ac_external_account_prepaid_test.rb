@@ -7,7 +7,7 @@ class AcExternalAccountPrepaidTest < CoreProTestBase
     ea = CorePro::ExternalAccount.new
     ea.customerId = @@prepaidCustomerId
     ea.nickName = "Ext acct #{@@timestamp}"
-    ea.tag = "tag #{@@timestamp}"
+    ea.tag = "tag ruby #{@@timestamp}"
     ea.accountNumber = '00001234'
     ea.firstName = 'Jimmy'
     ea.lastName = 'Jameson'
@@ -24,7 +24,7 @@ class AcExternalAccountPrepaidTest < CoreProTestBase
   end
 
   def test_getByTag
-    ea = CorePro::ExternalAccount.getByTag @@prepaidCustomerId, "tag #{@@timestamp}", @@prepaidConn, nil
+    ea = CorePro::ExternalAccount.getByTag @@prepaidCustomerId, "tag ruby #{@@timestamp}", @@prepaidConn, nil
     assert_instance_of CorePro::ExternalAccount, ea
     assert_equal @@prepaidExternalAccountId, ea.externalAccountId
   end
@@ -38,7 +38,7 @@ class AcExternalAccountPrepaidTest < CoreProTestBase
     ea = CorePro::ExternalAccount.new
     ea.customerId = @@prepaidCustomerId
     ea.externalAccountId = @@prepaidExternalAccountId
-    ea.nickName = "Updated ext act #{@@timestamp}"
+    ea.nickName = "Updated ext acct #{@@timestamp}"
     externalAccountId = ea.update @@prepaidConn, nil
     assert_equal @@prepaidExternalAccountId, externalAccountId
   end

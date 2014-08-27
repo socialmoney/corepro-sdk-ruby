@@ -6,7 +6,7 @@ class AbAccountNachaTest #< CoreProTestBase
   def test_create
     a = CorePro::Account.new
     a.customerId = @@nachaCustomerId
-    a.tag = "act#{@@timestamp}"
+    a.tag = "act ruby #{@@timestamp}"
     a.type = 'Client'
     a.category = 'CategoryA'
     a.subCategory = 'CategoryB'
