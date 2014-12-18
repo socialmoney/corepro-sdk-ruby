@@ -19,6 +19,7 @@ module CorePro
       end
 
       def initialize
+        super
         @messages = []
         @questions = []
       end

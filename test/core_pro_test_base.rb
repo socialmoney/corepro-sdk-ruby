@@ -30,7 +30,7 @@ class CoreProTestBase < Test::Unit::TestCase
 
   # nacha-specific program
 
-  @@nachaConn = CorePro::Connection.new 'corepronacha', 'corepronacha', 'sandbox-api.corepro.io'
+  @@nachaConn = CorePro::Connection.new 'corepronacha', 'corepronacha', 'pilot-api.corepro.io'
 
   @@nachaCustomerId = nil
 

@@ -1,6 +1,10 @@
 require_relative 'models/model_base'
 require_relative 'utils/requestor'
+require_relative 'models/program_checking'
+require_relative 'models/program_e_code'
 require_relative 'models/program_interest_rate'
+require_relative 'models/program_savings'
+require_relative 'models/program_prepaid'
 require_relative 'models/program_limit'
 
 module CorePro
@@ -9,42 +13,46 @@ module CorePro
     attr_accessor :name
     attr_accessor :verificationType
     attr_accessor :timeZone
-    attr_accessor :regDFeeAmount
-    attr_accessor :regDMonthlyTransactionWithdrawCountMax
-    attr_accessor :perTransactionWithdrawLimit
     attr_accessor :perUserDailyWithdrawLimit
     attr_accessor :perUserMonthlyWithdrawLimit
     attr_accessor :perProgramDailyWithdrawLimit
-    attr_accessor :perTransactionDepositLimit
     attr_accessor :perUserDailyDepositLimit
     attr_accessor :perUserMonthlyDepositLimit
     attr_accessor :perProgramDailyDepositLimit
     attr_accessor :website
     attr_accessor :isInternalToInternalTransferEnabled
     attr_accessor :decimalCount
-    attr_accessor :isInterestEnabled
-    attr_accessor :allowedAccountType
-    attr_accessor :isRecurringContributionEnabled
-    attr_accessor :interestRates
+    attr_accessor :validAccountTypes
     attr_accessor :filledDate
+    attr_accessor :externalAccountCountMax
+    attr_accessor :accountCountMax
+    attr_accessor :checkingProducts
+    attr_accessor :eCodeProducts
+    attr_accessor :savingsProducts
+    attr_accessor :prepaidProducts
 
     def initialize
       super
-      @interestRates = []
+      @checkingProducts = {}
+      @eCodeProducts = {}
+      @savingsProducts = {}
+      @prepaidProducts = {}
     end
 
     def from_json! json, classDefs
       classDefs = classDefs || {}
-      classDefs['interestRates'] = CorePro::Models::ProgramInterestRate
-      classDefs['perTransactionWithdrawLimit'] = CorePro::Models::ProgramLimit
       classDefs['perUserDailyWithdrawLimit'] = CorePro::Models::ProgramLimit
       classDefs['perUserMonthlyWithdrawLimit'] = CorePro::Models::ProgramLimit
       classDefs['perProgramDailyWithdrawLimit'] = CorePro::Models::ProgramLimit
 
-      classDefs['perTransactionDepositLimit'] = CorePro::Models::ProgramLimit
       classDefs['perUserDailyDepositLimit'] = CorePro::Models::ProgramLimit
       classDefs['perUserMonthlyDepositLimit'] = CorePro::Models::ProgramLimit
       classDefs['perProgramDailyDepositLimit'] = CorePro::Models::ProgramLimit
+
+      classDefs['checkingProducts'] = CorePro::Models::ProgramChecking
+      classDefs['eCodeProducts'] = CorePro::Models::ProgramECode
+      classDefs['savingsProducts'] = CorePro::Models::ProgramSavings
+      classDefs['prepaidProducts'] = CorePro::Models::ProgramPrepaid
 
       super json, classDefs
     end

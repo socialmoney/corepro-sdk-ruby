@@ -51,6 +51,7 @@ module CorePro
     end
 
     def initialize()
+      super
       @phones = []
       @addresses = []
       @accounts = []

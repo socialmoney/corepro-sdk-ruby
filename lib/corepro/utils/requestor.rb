@@ -33,8 +33,8 @@ module CorePro
           raise ArgumentError, 'A valid connection with apiKey, apiSecret, and domainName must be specified.'
         end
         uri = URI.parse("https://#{connection.domainName}#{relativeUrl}")
-        if @@config['CoreProProxyServer'] != nil && @@config['CoreProProxyPort'] != nil
-          proxy = Net::HTTP::Proxy(@@config['CoreProProxyServer'], @@config['CoreProProxyPort'])
+        if connection.proxyServerName != nil && connection.proxyPort != nil
+          proxy = Net::HTTP::Proxy(connection.proxyServerName, connection.proxyPort)
           http = proxy.new(uri.host, uri.port)
         else
           http = Net::HTTP.new(uri.host, uri.port)
@@ -62,8 +62,8 @@ module CorePro
         end
 
         uri = URI.parse("https://#{connection.domainName}#{relativeUrl}")
-        if @@config['CoreProProxyServer'] != nil && @@config['CoreProProxyPort'] != nil
-          proxy = Net::HTTP::Proxy(@@config['CoreProProxyServer'], @@config['CoreProProxyPort'])
+        if connection.proxyServerName != nil && connection.proxyPort != nil
+          proxy = Net::HTTP::Proxy(connection.proxyServerName, connection.proxyPort)
           http = proxy.new(uri.host, uri.port)
         else
           http = Net::HTTP.new(uri.host, uri.port)

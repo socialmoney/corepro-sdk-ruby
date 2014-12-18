@@ -11,7 +11,7 @@ class AcExternalAccountPrepaidTest < CoreProTestBase
     ea.accountNumber = '00001234'
     ea.firstName = 'Jimmy'
     ea.lastName = 'Jameson'
-    ea.type = 'Client'
+    ea.type = 'Prepaid'
     externalAccountId = ea.create @@prepaidConn, nil
     @@prepaidExternalAccountId = externalAccountId
     assert @@prepaidExternalAccountId > 0

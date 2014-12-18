@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../DocChecker/.idea/DocChecker.iml" filepath="$PROJECT_DIR$/../DocChecker/.idea/DocChecker.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/corepro-sdk-ruby.iml" filepath="$PROJECT_DIR$/.idea/corepro-sdk-ruby.iml" />
     </modules>
   </component>

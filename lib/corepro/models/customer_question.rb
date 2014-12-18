@@ -14,6 +14,7 @@ module CorePro
       end
 
       def initialize
+        super
         @answers = []
       end
     end

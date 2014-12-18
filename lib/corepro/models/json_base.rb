@@ -3,6 +3,9 @@ require 'json'
 module CorePro
   module Models
     class JsonBase
+      def is_hash?
+        false
+      end
 
       def to_hash
         hash = {}
@@ -68,6 +71,15 @@ module CorePro
                 arr.push item
               end
               self.instance_variable_set "@#{var}", arr
+            elsif cd.new.is_hash?
+            # elsif val.kind_of?(Hash)
+              hash = {}
+              val.each do |key, itemJson|
+                item = cd.new
+                item.from_json! itemJson, nil
+                hash[key] = item
+              end
+              self.instance_variable_set "@#{var}", hash
             else
               item = cd.new
               item.from_json! val, nil

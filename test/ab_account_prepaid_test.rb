@@ -7,7 +7,7 @@ class AbAccountPrepaidTest < CoreProTestBase
     a = CorePro::Account.new
     a.customerId = @@prepaidCustomerId
     a.tag = "act#{@@timestamp}"
-    a.type = 'Client'
+    a.type = 'Prepaid'
     a.category = 'CategoryA'
     a.subCategory = 'CategoryB'
     a.isCloseable = true
