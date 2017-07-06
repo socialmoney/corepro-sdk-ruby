@@ -40,7 +40,7 @@ module CorePro
           http = Net::HTTP.new(uri.host, uri.port)
         end
         http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
         headers = { 'User-Agent' => SDK_USER_AGENT,
                   'Content-Type' => 'application/json; charset=utf-8',
                   'Accept' => 'application/json; charset=utf-8',
@@ -69,7 +69,7 @@ module CorePro
           http = Net::HTTP.new(uri.host, uri.port)
         end
         http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
         headers = { 'User-Agent' => SDK_USER_AGENT,
                     'Content-Type' => 'application/json; charset=utf-8',
                     'Accept' => 'application/json; charset=utf-8',
@@ -105,7 +105,7 @@ module CorePro
             if envelope.errors.length > 0
               raise CorePro::CoreProApiException.new(envelope.errors)
             else
-              if classDef == NIL
+              if classDef == nil
                 # no class definition given, return raw envelope
                 envelope
               else

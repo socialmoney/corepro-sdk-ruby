@@ -24,7 +24,7 @@ module CorePro
     end
 
     def list(connection = nil, loggingObject = nil)
-      CorePro::Utils::Requestor.get("/bankdocument/list/#{escape(self.culture)}/#{escape(self.documentType)}", BankDocument, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/bankdocument/list/#{BankDocument.escape(self.culture)}/#{BankDocument.escape(self.documentType)}", BankDocument, connection, loggingObject)
     end
 
     def self.download(culture, documentId, connection = nil, loggingObject = nil)
@@ -35,7 +35,7 @@ module CorePro
     end
 
     def download(connection = nil, loggingObject = nil)
-      CorePro::Utils::Requestor.get("/bankdocument/download/#{escape(self.culture)}/#{self.documentId}", CorePro::Models::FileContent, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/bankdocument/download/#{BankDocument.escape(self.culture)}/#{self.documentId}", CorePro::Models::FileContent, connection, loggingObject)
     end
 
   end

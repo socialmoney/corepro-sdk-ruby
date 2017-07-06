@@ -37,9 +37,16 @@ module CorePro
         start = '1900-01-01'
       end
 
-      CorePro::Utils::Requestor.get("/transaction/list/#{self.customerId}/#{accountId}/#{escape(status)}/#{start}/#{finish}?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Transaction, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/transaction/list/#{self.customerId}/#{accountId}/#{Transaction.escape(status)}/#{start}/#{finish}?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Transaction, connection, loggingObject)
     end
 
+    def self.get(customerId, transactionId, connection = nil, loggingObject = nil)
+      CorePro::Utils::Requestor.get("/transaction/get/#{customerId}/#{transactionId}", Transaction, connection, loggingObject)
+    end
+
+    def self.getByTag(customerId, tag, connection = nil, loggingObject = nil)
+      CorePro::Utils::Requestor.get("/transaction/getByTag/#{customerId}/#{Transaction.escape(tag)}", Transaction, connection, loggingObject)
+    end
 
   end
 end

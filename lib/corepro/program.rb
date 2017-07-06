@@ -1,7 +1,9 @@
 require_relative 'models/model_base'
 require_relative 'utils/requestor'
+require_relative 'models/program_account'
 require_relative 'models/program_checking'
 require_relative 'models/program_e_code'
+require_relative 'models/program_external_account'
 require_relative 'models/program_interest_rate'
 require_relative 'models/program_savings'
 require_relative 'models/program_prepaid'
@@ -30,6 +32,8 @@ module CorePro
     attr_accessor :eCodeProducts
     attr_accessor :savingsProducts
     attr_accessor :prepaidProducts
+    attr_accessor :accounts
+    attr_accessor :externalAccounts
 
     def initialize
       super
@@ -37,6 +41,8 @@ module CorePro
       @eCodeProducts = {}
       @savingsProducts = {}
       @prepaidProducts = {}
+      @accounts = {}
+      @externalAccounts = {}
     end
 
     def from_json! json, classDefs
@@ -53,6 +59,9 @@ module CorePro
       classDefs['eCodeProducts'] = CorePro::Models::ProgramECode
       classDefs['savingsProducts'] = CorePro::Models::ProgramSavings
       classDefs['prepaidProducts'] = CorePro::Models::ProgramPrepaid
+
+      classDefs['accounts'] = CorePro::Models::ProgramAccount
+      classDefs['externalAccounts'] = CorePro::Models::ProgramExternalAccount
 
       super json, classDefs
     end

@@ -5,6 +5,7 @@ require_relative 'models/customer_id_only'
 require_relative 'models/customer_phone'
 require_relative 'models/customer_address'
 require_relative 'account'
+require_relative 'card'
 require_relative 'external_account'
 
 module CorePro
@@ -15,6 +16,7 @@ module CorePro
     attr_accessor :firstName
     attr_accessor :middleName
     attr_accessor :lastName
+    attr_accessor :suffix
     attr_accessor :birthDate
     attr_accessor :gender
     attr_accessor :culture
@@ -22,24 +24,39 @@ module CorePro
     attr_accessor :status
     attr_accessor :createdDate
     attr_accessor :taxId
+    attr_accessor :taxIdMasked
     attr_accessor :driversLicenseNumber
+    attr_accessor :driversLicenseNumberMasked
     attr_accessor :driversLicenseState
-    attr_accessor :driversLicenseExpirationDate
+    attr_accessor :driversLicenseIssueDate
+    attr_accessor :driversLicenseExpireDate
     attr_accessor :passportNumber
+    attr_accessor :passportNumberMasked
     attr_accessor :passportCountry
+    attr_accessor :passportIssueDate
+    attr_accessor :passportExpireDate
     attr_accessor :emailAddress
     attr_accessor :isActive
     attr_accessor :isLocked
     attr_accessor :lockedDate
     attr_accessor :lockedReason
+    attr_accessor :deceasedDate
     attr_accessor :isSubjectToBackupWithholding
     attr_accessor :isOptedInToBankCommunication
     attr_accessor :isDocumentsAccepted
+    attr_accessor :customField1
+    attr_accessor :customField2
+    attr_accessor :customField3
+    attr_accessor :customField4
+    attr_accessor :customField5
+    attr_accessor :accessTypeCode
+    attr_accessor :lastModifiedDate
+    attr_accessor :lastActivityDate
     attr_accessor :phones
     attr_accessor :addresses
-    attr_accessor :deceasedDate
     attr_accessor :accounts
     attr_accessor :externalAccounts
+    attr_accessor :cards
 
     def from_json! json, classDefs
       classDefs = classDefs || {}
@@ -47,6 +64,7 @@ module CorePro
       classDefs['addresses'] = CorePro::Models::CustomerAddress
       classDefs['accounts'] = CorePro::Account
       classDefs['externalAccounts'] = CorePro::ExternalAccount
+      classDefs['cards'] = CorePro::Card
       super json, classDefs
     end
 
@@ -55,35 +73,24 @@ module CorePro
       @phones = []
       @addresses = []
       @accounts = []
-      @externalAccount = []
+      @externalAccounts = []
+      @cards = []
     end
 
     def self.list(pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
-      Customer.new.list pageNumber, pageSize, connection, loggingObject
-    end
-
-    def list(pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.get("/customer/list?pageNumber=#{pageNumber}&pageSize=#{pageSize}", Customer, connection, loggingObject)
     end
 
     def self.get(customerId, connection = nil, loggingObject = nil)
-      c = Customer.new
-      c.customerId = customerId
-      c.get(connection, loggingObject)
-    end
-
-    def get(connection = nil, loggingObject = nil)
-      CorePro::Utils::Requestor.get("/customer/get/#{self.customerId}", Customer, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/customer/get/#{customerId}", Customer, connection, loggingObject)
     end
 
     def self.getByTag(tag, connection = nil, loggingObject = nil)
-      c = Customer.new
-      c.tag = tag
-      c.getByTag(connection, loggingObject)
+      CorePro::Utils::Requestor.get("/customer/getByTag/?tag=#{escape(tag)}", Customer, connection, loggingObject)
     end
 
-    def getByTag(connection = nil, loggingObject = nil)
-      CorePro::Utils::Requestor.get("/customer/getByTag/#{escape(self.tag)}", Customer, connection, loggingObject)
+    def self.getByEmail(emailAddress, connection = nil, loggingObject = nil)
+      CorePro::Utils::Requestor.get("/customer/getByEmail/?emailAddress=#{escape(emailAddress)}", Customer, connection, loggingObject)
     end
 
     def self.search(tag = nil, taxId = nil, passportNumber = nil, driversLicenseNumber = nil, birthDate = nil, emailAddress = nil, lastName = nil, firstName = nil, pageNumber = 0, pageSize = 200, connection = nil, loggingObject = nil)
@@ -113,26 +120,13 @@ module CorePro
       cid.customerId
     end
 
-    def self.deactivate(customerId, connection = nil, loggingObject = nil)
-      c = Customer.new
-      c.customerId = customerId
-      c.deactivate(connection, loggingObject)
-    end
-
-    def deactivate(connection = nil, loggingObject = nil)
-      cid = CorePro::Utils::Requestor.post('/customer/deactivate', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
+    def archive(connection = nil, loggingObject = nil)
+      cid = CorePro::Utils::Requestor.post('/customer/archive', CorePro::Models::CustomerIdOnly, self, connection, loggingObject)
       cid.customerId
     end
 
     def initiate(connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.post('/customer/initiate', CorePro::Models::CustomerResponse, self, connection, loggingObject)
-    end
-
-    def self.verify(verificationId, answers, connection = nil, loggingObject = nil)
-      cvr = CorePro::Models::CustomerVerifyRequest.new
-      cvr.verificationId = verificationId
-      cvr.answers = answers
-      cvr.verify connection, loggingObject
     end
 
     def verify(verificationId, answers, connection = nil, loggingObject = nil)

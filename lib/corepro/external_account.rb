@@ -22,38 +22,25 @@ module CorePro
     attr_accessor :accountNumberMasked
     attr_accessor :nocCode
     attr_accessor :isActive
+    attr_accessor :isLocked
     attr_accessor :lockedDate
     attr_accessor :lockedReason
+    attr_accessor :customField1
+    attr_accessor :customField2
+    attr_accessor :customField3
+    attr_accessor :customField4
+    attr_accessor :customField5
+    attr_accessor :lastModifiedDate
 
     def self.list(customerId, connection = nil, loggingObject = nil)
-      ea = ExternalAccount.new
-      ea.customerId = customerId
-      ea.list connection, loggingObject
-    end
-
-    def list(connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.get("/externalaccount/list/#{customerId}", ExternalAccount, connection, loggingObject)
     end
 
     def self.get(customerId, externalAccountId, connection = nil, loggingObject = nil)
-      ea = ExternalAccount.new
-      ea.customerId = customerId
-      ea.externalAccountId = externalAccountId
-      ea.get connection, loggingObject
-    end
-
-    def get(connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.get("/externalaccount/get/#{customerId}/#{externalAccountId}", ExternalAccount, connection, loggingObject)
     end
 
     def self.getByTag(customerId, tag, connection = nil, loggingObject = nil)
-      ea = ExternalAccount.new
-      ea.customerId = customerId
-      ea.tag = tag
-      ea.getByTag connection, loggingObject
-    end
-
-    def getByTag(connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.get("/externalaccount/getByTag/#{customerId}/#{escape(tag)}", ExternalAccount, connection, loggingObject)
     end
 
@@ -88,7 +75,7 @@ module CorePro
       eaid.externalAccountId
     end
 
-    def deactivate(connection = nil, loggingObject = nil)
+    def archive(connection = nil, loggingObject = nil)
       eaid = CorePro::Utils::Requestor.post('/externalaccount/deactivate', CorePro::Models::ExternalAccountIdOnly, self, connection, loggingObject)
       eaid.externalAccountId
     end

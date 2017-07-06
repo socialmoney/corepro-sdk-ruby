@@ -4,39 +4,25 @@ require_relative "../lib/corepro/core_pro_api_exception"
 
 class CoreProTestBase < Test::Unit::TestCase
 
-  # common properties between prepaid and nacha
+  # common properties for tests
   @@timestamp = Time.now.to_s
 
   @@documentId = nil
 
+  @@exampleConn = CorePro::Connection.new 'example1', 'example1', 'sandbox-api.corepro.io' #, '127.0.0.1', '8888'
 
-  # prepaid-specific program
-  # tests the config.yml lookup. should always return coreproprepaid credentials and server.
-  @@prepaidConn = CorePro::Connection.createFromConfig()
+  @@exampleProgramReserveAccountId = nil
 
+  @@exampleCustomerId = nil
 
-  @@prepaidCustomerId = nil
+  @@exampleAccountId = nil
 
-  @@prepaidAccountId = nil
+  @@exampleExternalAccountId = nil
 
-  @@prepaidExternalAccountId = nil
+  @@exampleExternalToInternalTransactionId = nil
 
-  @@prepaidCustomerBeneficiaryId = nil
+  @@exampleExternalToInternalTransactionTag = nil
 
-  @@prepaidInternalToExternalTransactionId = nil
+  @@exampleProgramReserveToInternalTransactionId = nil
 
-  @@prepaidExternalToInternalTransactionId = nil
-
-
-  # nacha-specific program
-
-  @@nachaConn = CorePro::Connection.new 'corepronacha', 'corepronacha', 'pilot-api.corepro.io'
-
-  @@nachaCustomerId = nil
-
-  @@nachaAccountId = nil
-
-  @@nachaExternalAccountId = nil
-
-  @@nachaExternalToInternalTransactionId = nil
 end

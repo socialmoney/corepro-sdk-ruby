@@ -7,31 +7,20 @@ module CorePro
     attr_accessor :customerId
     attr_accessor :customerBeneficiaryId
     attr_accessor :firstName
+    attr_accessor :middleName
     attr_accessor :lastName
     attr_accessor :birthDate
     attr_accessor :taxId
     attr_accessor :taxIdMasked
     attr_accessor :isActive
+    attr_accessor :lastModifiedDate
 
     def self.list(customerId, connection = nil, loggingObject = nil)
-      cb = CustomerBeneficiary.new
-      cb.customerId = customerId
-      cb.list connection, loggingObject
-    end
-
-    def list(connection = nil, loggingObject = nil)
-      CorePro::Utils::Requestor.get("/customerbeneficiary/list/#{self.customerId}", CustomerBeneficiary, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/customerbeneficiary/list/#{customerId}", CustomerBeneficiary, connection, loggingObject)
     end
 
     def self.get(customerId, customerBeneficiaryId, connection = nil, loggingObject = nil)
-      cb = CustomerBeneficiary.new
-      cb.customerId = customerId
-      cb.customerBeneficiaryId = customerBeneficiaryId
-      cb.get connection, loggingObject
-    end
-
-    def get(connection = nil, loggingObject = nil)
-      CorePro::Utils::Requestor.get("/customerbeneficiary/get/#{self.customerId}/#{self.customerBeneficiaryId}", CustomerBeneficiary, connection, loggingObject)
+      CorePro::Utils::Requestor.get("/customerbeneficiary/get/#{customerId}/#{customerBeneficiaryId}", CustomerBeneficiary, connection, loggingObject)
     end
 
     def create(connection = nil, loggingObject = nil)

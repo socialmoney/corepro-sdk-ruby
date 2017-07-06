@@ -6,7 +6,7 @@ module CorePro
     class ModelBase < JsonBase
       attr_accessor :requestId
 
-      def escape(val)
+      def self.escape(val)
         if val.to_s.empty?
           ''
         else

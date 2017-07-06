@@ -7,6 +7,11 @@ module CorePro
       attr_accessor :apr
       attr_accessor :minimumAmount
       attr_accessor :maximumAmount
+      attr_accessor :effectiveDate
+      attr_accessor :expireDate
+      attr_accessor :rateEffectiveDate
+      attr_accessor :rateExpireDate
+      attr_accessor :description
 
     end
   end
