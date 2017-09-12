@@ -1,4 +1,4 @@
-require_relative 'Models/model_base'
+require_relative 'models/model_base'
 require_relative 'utils/requestor'
 require 'base64'
 
