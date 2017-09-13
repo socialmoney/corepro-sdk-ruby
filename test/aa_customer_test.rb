@@ -18,6 +18,10 @@ class AaCustomerTest < CoreProTestBase
     c.isOptedInToBankCommunication = false
     c.tag = "jfm#{@@timestamp}"
     c.taxId = '012341234'
+    p = CorePro::Models::CustomerPhone.new
+    p.phoneType = 'mobile'
+    p.number = '515-555-1234'
+    c.phones.push(p)
 
     ra = CorePro::Models::CustomerAddress.new
     ra.addressLine1 = '123 Main Street'

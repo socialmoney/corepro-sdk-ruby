@@ -29,7 +29,7 @@ module CorePro
     attr_accessor :archivedDate
     attr_accessor :lastModifiedDate
     attr_accessor :accounts
-
+    attr_accessor :newPin
 
     def self.get(customerId, cardId, connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.get("/card/get/#{customerId}/#{cardId}", Card, connection, loggingObject)
@@ -42,7 +42,6 @@ module CorePro
     def self.list(customerId, connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.get("/card/list/#{customerId}", Card, connection, loggingObject)
     end
-
 
     def initiate(connection = nil, loggingObject = nil)
       CorePro::Utils::Requestor.post('/card/initiate', Card, self, connection, loggingObject)

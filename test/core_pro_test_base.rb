@@ -19,6 +19,8 @@ class CoreProTestBase < Test::Unit::TestCase
 
   @@exampleExternalAccountId = nil
 
+  @@exampleCardId = nil
+
   @@exampleExternalToInternalTransactionId = nil
 
   @@exampleExternalToInternalTransactionTag = nil

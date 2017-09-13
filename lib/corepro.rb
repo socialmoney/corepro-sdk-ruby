@@ -1,6 +1,7 @@
 require_relative 'corepro/connection'
 require_relative 'corepro/account'
 require_relative 'corepro/account_close'
+require_relative 'corepro/card'
 require_relative 'corepro/core_pro_api_exception'
 require_relative 'corepro/customer'
 require_relative 'corepro/customer_beneficiary'
